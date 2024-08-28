@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Poppins", "sans-serif"],
+        bungee: ["Jersey 10", "sans-serif"],
       },
       colors: {
         primary: "#0071e3",
@@ -25,5 +26,5 @@ export default {
       },
     },
     plugins: [],
-  }
-}
+  },
+};
