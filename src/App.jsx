@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        <h1 className='text-primary'>LandSync</h1>
+        <h1 className='bg-primary  text-light-yellow'>LandSync</h1>
       </div>
     </>
   )
