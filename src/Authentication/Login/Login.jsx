@@ -38,7 +38,14 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                       <p className="animate-pulse flex items-center justify-center">
                         <Logo />
                       </p>
-                      <div className="mt-12">
+                      <div className="mt-6">
+                        {/* == */}
+                        <div className="mb-8">
+                          <h1 className="my-3 text-4xl font-bold bg-gradient-to-br from-red-500 to-cyan-200 text-transparent bg-clip-text">
+                            Sign In
+                          </h1>
+                        </div>
+                        {/* == */}
                         <p className="text-sm text-gray-300">
                           Sign in to access your account
                         </p>
@@ -133,7 +140,8 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                       <p className="px-6 text-sm text-center text-gray-100">
                         Don&apos;t have an account yet?
                         <Link
-                          to="/signUpPage"
+                          to="/register"
+                          onClick={closeLoginModal}
                           className="hover:underline hover:text-red-500 text-gray-400"
                         >
                           {" "}
