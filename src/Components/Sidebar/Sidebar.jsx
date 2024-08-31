@@ -8,12 +8,23 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { IoMdNotifications } from "react-icons/io";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
+import Login from "../../Authentication/Login/Login";
 
 const Sidebar = () => {
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const openLoginModal = () => {
+    setIsLoginOpen(true);
+  };
+  const closeLoginModal = () => {
+    setIsLoginOpen(false);
+  };
+
   const [isActive, setActive] = useState(false);
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  const loggedin = false;
   return (
     <>
       {/* Small Screen Navbar */}
@@ -89,15 +100,31 @@ const Sidebar = () => {
             label="Profile"
             address="/my-profile"
           />
-          <button
-            // onClick={logOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 transform"
-          >
-            <RiLogoutCircleLine />
-            <span className="mx-4 font-medium">Logout</span>
-          </button>
+          {loggedin === false ? (
+            <button
+              onClick={openLoginModal}
+              className="flex w-full items-center px-4 py-2 mt-5 text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 transform"
+            >
+              <RiLogoutCircleLine />
+              <span className="mx-4 font-medium">Login</span>
+            </button>
+          ) : (
+            <button
+              // onClick={logOut}
+              className="flex w-full items-center px-4 py-2 mt-5 text-gray-300 hover:bg-white hover:text-black transition-colors duration-300 transform"
+            >
+              <RiLogoutCircleLine />
+              <span className="mx-4 font-medium">Logout</span>
+            </button>
+          )}
         </div>
       </div>
+
+      <Login
+        isLoginOpen={isLoginOpen}
+        openLoginModal={openLoginModal}
+        closeLoginModal={closeLoginModal}
+      />
     </>
   );
 };
