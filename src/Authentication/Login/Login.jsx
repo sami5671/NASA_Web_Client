@@ -2,9 +2,26 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import Logo from "../../Components/Logo/Logo";
 import { Link } from "react-router-dom";
-import { FaGithub } from "react-icons/fa6";
-import { FcGoogle } from "react-icons/fc";
+import useAuth from "./../../Hooks/UseAuth";
+import SocialLogin from "../SocialLogin/SocialLogin";
 const Login = ({ isLoginOpen, closeLoginModal }) => {
+  // =================================================================
+  const { signInWithGoogle, signInWithGitHub } = useAuth();
+
+  const from = location?.state?.from?.pathname || "/";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+  };
+
+  //---------------- handle Google Sign In --------------------
+
+  // =================================================================
   return (
     <>
       <Transition appear show={isLoginOpen} as={Fragment}>
@@ -124,19 +141,9 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                         </p>
                         <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
                       </div>
-                      <div
-                        // onClick={handleGoogleSignIn}
-                        className="flex justify-center items-center space-x-2 border m-3 p-2 bg-slate-300 cursor-pointer hover:bg-slate-200"
-                      >
-                        <FcGoogle size={32} />
-
-                        <p>Continue with Google</p>
-                      </div>
-                      <div className="flex justify-center items-center space-x-2 border m-3 p-2 bg-slate-300 cursor-pointer hover:bg-slate-200">
-                        <FaGithub size={32} />
-
-                        <p>Continue with GitHub</p>
-                      </div>
+                      {/* ====social login */}
+                      <SocialLogin />
+                      {/* ================ */}
                       <p className="px-6 text-sm text-center text-gray-100">
                         Don&apos;t have an account yet?
                         <Link
@@ -144,7 +151,6 @@ const Login = ({ isLoginOpen, closeLoginModal }) => {
                           onClick={closeLoginModal}
                           className="hover:underline hover:text-red-500 text-gray-400"
                         >
-                          {" "}
                           Sign up
                         </Link>
                       </p>

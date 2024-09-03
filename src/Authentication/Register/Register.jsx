@@ -1,10 +1,18 @@
-import { FcGoogle } from "react-icons/fc";
 import { MdSatelliteAlt } from "react-icons/md";
-import { FaGithub } from "react-icons/fa6";
 import Login from "../Login/Login";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import useAuth from "../../Hooks/UseAuth";
+import { useNavigate } from "react-router-dom";
+import SocialLogin from "../SocialLogin/SocialLogin";
+import { imageUpload } from "../../api/utils";
 
 const Register = () => {
+  const [uploadButtonText, setUploadButtonText] = useState(
+    "Upload Profile Picture"
+  );
+
+  const { createUser } = useAuth();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   const openLoginModal = () => {
@@ -12,6 +20,39 @@ const Register = () => {
   };
   const closeLoginModal = () => {
     setIsLoginOpen(false);
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    // const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const image = form.image.files[0];
+
+    try {
+      // uploading img to imgBB
+
+      const imageData = await imageUpload(image);
+
+      // user registration
+      const result = await createUser(email, password);
+      console.log(result);
+
+      navigate("/");
+      setUploadButtonText("Upload Profile Picture");
+      toast.success("SignUp Successful");
+      // ----------------------------------------------------------------
+    } catch (err) {
+      // console.log(err);
+      toast.error(err?.message);
+    }
+  };
+
+  const handleImageChange = (image) => {
+    setUploadButtonText(image.name);
   };
 
   return (
@@ -25,19 +66,9 @@ const Register = () => {
             </p>
             <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
           </div>
-          <div
-            // onClick={handleGoogleSignIn}
-            className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white"
-          >
-            <FcGoogle size={32} />
-
-            <p>Continue with Google</p>
-          </div>
-          <div className="flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer hover:bg-black hover:text-white">
-            <FaGithub size={32} />
-
-            <p>Continue with GitHub</p>
-          </div>
+          {/*  */}
+          <SocialLogin />
+          {/*  */}
           <p className="px-6 text-sm text-center text-gray-400">
             Already have an account?
             <button
@@ -62,7 +93,7 @@ const Register = () => {
                 </p>
               </div>
               <form
-                // onSubmit={handleSubmit}
+                onSubmit={handleSubmit}
                 noValidate=""
                 action=""
                 className="space-y-6 ng-untouched ng-pristine ng-valid"
@@ -70,7 +101,7 @@ const Register = () => {
                 <div className="space-y-4">
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="name"
                       className="block mb-2 text-sm text-white"
                     >
                       Name
@@ -127,7 +158,7 @@ const Register = () => {
                     <div className="flex flex-col w-max mx-auto text-center ">
                       <label>
                         <input
-                          //   onChange={(e) => handleImageChange(e.target.files[0])}
+                          onChange={(e) => handleImageChange(e.target.files[0])}
                           className="text-sm cursor-pointer hidden"
                           type="file"
                           name="image"
@@ -136,7 +167,7 @@ const Register = () => {
                           hidden
                         />
                         <div className="bg-red-800 hover:animate-pulse text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-red-700">
-                          {/* {uploadButtonText} */} Upload Your Image
+                          {uploadButtonText}
                         </div>
                       </label>
                     </div>

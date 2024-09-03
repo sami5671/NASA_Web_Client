@@ -77,12 +77,12 @@ const Sidebar = () => {
               <MenuItem
                 icon={MdSatelliteAlt}
                 label="Track Land-Sat"
-                address="/track-sat"
+                address="/trackLandSat"
               />
               <MenuItem
                 icon={FaMapLocationDot}
                 label="Select Location"
-                address="/select-ground"
+                address="/selectLocation"
               />
               <MenuItem
                 icon={IoMdNotifications}
@@ -95,11 +95,7 @@ const Sidebar = () => {
         <div className="">
           <hr className="border-red-600 border-2" />
 
-          <MenuItem
-            icon={IoSettingsSharp}
-            label="Profile"
-            address="/my-profile"
-          />
+          <MenuItem icon={IoSettingsSharp} label="Profile" address="/profile" />
           {loggedin === false ? (
             <button
               onClick={openLoginModal}
