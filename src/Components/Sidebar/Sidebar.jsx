@@ -1,7 +1,6 @@
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Logo from "../Logo/Logo";
 import MenuItem from "./MenuItem";
-import { IoSettingsSharp } from "react-icons/io5";
 import { FaHome } from "react-icons/fa";
 import { MdSatelliteAlt } from "react-icons/md";
 import { FaMapLocationDot } from "react-icons/fa6";
@@ -9,7 +8,8 @@ import { IoMdNotifications } from "react-icons/io";
 import { useState } from "react";
 import { MdMenu } from "react-icons/md";
 import Login from "../../Authentication/Login/Login";
-
+import userImg from "../../../public/Images/user.png";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const openLoginModal = () => {
@@ -24,7 +24,7 @@ const Sidebar = () => {
     setActive(!isActive);
   };
 
-  const loggedin = false;
+  const loggedin = true;
   return (
     <>
       {/* Small Screen Navbar */}
@@ -95,7 +95,38 @@ const Sidebar = () => {
         <div className="">
           <hr className="border-red-600 border-2" />
 
-          <MenuItem icon={IoSettingsSharp} label="Profile" address="/profile" />
+          {loggedin === true ? (
+            <div className="text-white flex items-center gap-4 mt-3">
+              <Link to="/profile">
+                <div className="">
+                  <img
+                    className="w-12 h-12 bg-white rounded-full"
+                    src={userImg}
+                    alt=""
+                  />
+                </div>
+              </Link>
+              <div className="">
+                <p className="text-[16px]">Md Sami Alam</p>
+                <p className="text-[10px]">samialam5671@gmail.com</p>
+              </div>
+            </div>
+          ) : (
+            <div className="text-white flex items-center gap-4 mt-3">
+              <div className="">
+                <img
+                  className="w-12 h-12 bg-white rounded-full"
+                  src={userImg}
+                  alt=""
+                />
+              </div>
+              <div className="">
+                <p className="text-[16px]">Mr. Robin Son</p>
+                <p className="text-[10px]">nasaspaceapp5671@gmail.com</p>
+              </div>
+            </div>
+          )}
+
           {loggedin === false ? (
             <button
               onClick={openLoginModal}

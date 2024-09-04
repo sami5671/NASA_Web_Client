@@ -5,11 +5,13 @@ import UserInputLandSarToTrack from "./UserInputLandSatToTrack/UserInputLandSarT
 const TrackLandSat = () => {
   return (
     <div>
-      <h1 className="text-center text-white text-4xl">
-        Here you can track Land sat
-      </h1>
-
-      <div className="flex items-center gap-4 mt-24">
+      {/* landsat 8 live reading  */}
+      <div>
+        <div>
+          <LandSat8LiveReading />
+        </div>
+      </div>
+      <div className="flex items-center gap-4 mt-6">
         {/* visual direction of the landsat 8 */}
         <div>
           <LandSatMap />
@@ -17,12 +19,6 @@ const TrackLandSat = () => {
         {/* input form user */}
         <div className="w-[600px]">
           <UserInputLandSarToTrack />
-        </div>
-      </div>
-      {/* landsat 8 live reading  */}
-      <div>
-        <div>
-          <LandSat8LiveReading />
         </div>
       </div>
     </div>

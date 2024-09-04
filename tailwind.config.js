@@ -25,6 +25,6 @@ export default {
         "light-pink": "#ff2d55",
       },
     },
-    plugins: [],
+    plugins: [require("daisyui")],
   },
 };
