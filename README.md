@@ -27,50 +27,11 @@
 - Google Earth Engine API credentials
 - Twilio/SendGrid API keys for notifications
 
-### Clone the Repository
+1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/GeoSync.git
-cd GeoSync
-```
-
-### Backend Setup
-
-1. Navigate to the `backend` directory:
-
-```bash
-cd backend
-```
-
-2. Install the dependencies:
-
-```bash
-npm install
-```
-
-3. Set up environment variables:
-
-Create a `.env` file in the `backend` directory with the following variables:
-
-```bash
-MONGODB_URI=your_mongodb_uri
-GE_API_KEY=your_google_earth_engine_api_key
-TWILIO_API_KEY=your_twilio_api_key
-SENDGRID_API_KEY=your_sendgrid_api_key
-```
-
-4. Start the backend server:
-
-```bash
-npm start
-```
-
-### Frontend Setup
-
-1. Navigate to the `frontend` directory:
-
-```bash
-cd ../frontend
+git clone https://github.com/sami5671/NASA_Web_Client.git
+cd NASA_Web_Client
 ```
 
 2. Install the dependencies:
@@ -85,9 +46,13 @@ npm install
 npm start
 ```
 
+## Backend
+
+go to https://github.com/sami5671/NASA_Web_Server
+
 ### Access the Application
 
-Once both the frontend and backend servers are running, you can access the application in your browser at `http://localhost:3000`.
+you can access the application in your browser at `http://localhost:5173`.
 
 ## Usage
 
@@ -95,22 +60,6 @@ Once both the frontend and backend servers are running, you can access the appli
 - **Set Up Notifications**: Get alerts for upcoming Landsat overpasses.
 - **Compare Data**: Upload ground-based spectral measurements and compare them with Landsat SR data.
 - **Explore Educational Resources**: Learn how to analyze and interpret spectral data.
-
-## Contributing
-
-Contributions are welcome! Please fork this repository and submit a pull request to contribute to the project.
-
-### To Contribute:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature/your-feature-name`.
-3. Commit your changes: `git commit -m 'Add some feature'`.
-4. Push to the branch: `git push origin feature/your-feature-name`.
-5. Submit a pull request.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
 
