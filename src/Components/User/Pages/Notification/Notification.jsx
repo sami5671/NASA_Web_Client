@@ -4,7 +4,7 @@ const Notification = () => {
   return (
     <div>
       <h1 className="text-center text-white text-4xl">
-        Get your notifications
+        Get your notifications 🔔
       </h1>
     </div>
   );
